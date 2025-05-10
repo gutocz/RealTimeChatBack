@@ -1,9 +1,12 @@
-version: '3.8'
-
+version: '3'
 services:
-  chat-server:
+  backend:
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: ./backend  # Aponta para a pasta do backend
+      dockerfile: Dockerfile  # Aponta para o Dockerfile do backend
     ports:
-      - "3000:3000"
+      - "3000:3000"  # Mapeia a porta 3000 do container para a porta 3000 local
+    volumes:
+      - ./backend:/app  # Faz um bind mount para refletir alterações no código automaticamente
+    environment:
+      NODE_ENV: production  # Defina aqui suas variáveis de ambiente, como NODE_ENV
